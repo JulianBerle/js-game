@@ -77,7 +77,12 @@ function moveInvaders() {
     };
 
     draw();
+
+    if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
+        console.log('game Over');
+        clearInterval(invadersId);
+    };
 };
 
-invadersId = setInterval(moveInvaders, 500);
+invadersId = setInterval(moveInvaders, 1);
 
