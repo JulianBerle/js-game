@@ -103,6 +103,10 @@ function shoot(e) {
         currentLaserIndex -= width;
         squares[currentLaserIndex].classList.add('laser');
     }
+    switch(e.key) {
+        case 'ArrowUp': 
+        laserID = setInterval(moveLaser, 100)
+    }
 }
 
-document.addEventListener('keyup', shoot)
+document.addEventListener('keydown', shoot)
