@@ -2,5 +2,12 @@
     width: 300px;
     height: 300px;
     border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
 
+}
+
+.grid div {
+    width: 20px;
+    height: 20px;
 }
