@@ -1,4 +1,23 @@
-.grid {
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.welcomescreen .title {
+    text-align: center;
+}
+
+.welcomescreen .stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.game {
+    display: none;
+}
+
+.game .grid {
     width: 300px;
     height: 300px;
     border: 1px solid black;
@@ -7,25 +26,25 @@
 
 }
 
-.grid div {
+.game .grid div {
     width: 20px;
     height: 20px;
 }
 
-.invader {
+.game .invader {
     background-color: purple;
     border-radius: 10px;
 }
 
-.shooter {
+.game .shooter {
     background-color: green;
 }
 
-.laser {
+.game .laser {
     background-color: orange;
 }
 
-.boom {
+.game .boom {
     background-color: red;
 }
 
