@@ -13,6 +13,19 @@
     justify-content: space-around;
 }
 
+.welcomescreen .buttons {
+    text-align: center;
+}
+
+.welcomescreen .buttons a {
+    transition: .4s;
+}
+
+.welcomescreen .buttons a:hover {
+    color: green;
+    cursor: pointer;
+}
+
 .game {
     display: none;
 }

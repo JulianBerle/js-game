@@ -1,4 +1,10 @@
-let pName = prompt("Voordat u begint met spelen vul een gebruikersnaam in")
+let pName = prompt("Voordat u begint met spelen vul een gebruikersnaam in");
+
+const cookieValue = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('score='))
+  ?.split('=')[1];
+document.querySelector(".personal_stat span").innerHTML = `${cookieValue}`
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -33,6 +39,10 @@ function checkCookie() {
                 setCookie("username", username, 365);
             }
         }
+}
+
+function deleteCookie(cname) {
+    createCookie(cname,"",-9999999999);
 }
 
 function gameStart() {
@@ -129,19 +139,27 @@ function gameStart() {
             draw();
     
             if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-                resultsDisplay.innerHTML = 'GAME OVER youre score was' + results;
+                resultsDisplay.innerHTML = 'GAME OVER youre score was ' + results;
+                setCookie("username", `${pName}`, 2);
+                setCookie("score", `${results}`, 2);
+                setCookie("win_status", `GAME OVER`, 2);
                 clearInterval(invadersId);
             };
     
             for (let i = 0; i < alienInvaders.length; i++) {
                 if(alienInvaders[i] > (squares.length )) {
                     resultsDisplay.innerHTML = 'GAME OVER youre score was ' + results;
+                    setCookie("username", `${pName}`, 2);
+                    setCookie("score", `${results}`, 2);
+                    setCookie("win_status", `GAME OVER`, 2);
                     clearInterval(invadersId);
                 };
             };
             if (aliensRemoved.length === alienInvaders.length) {
                 resultsDisplay.innerHTML = 'YOU WIN with score ' + results;
-                setCookie("High-score", `username=${pName}; score=10`, 2)
+                setCookie("username", `${pName}`, 2);
+                setCookie("score", `${results}`, 2);
+                setCookie("win_status", `WON`, 2);
                 clearInterval(invadersId);
             }
         };
