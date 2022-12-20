@@ -1,8 +1,16 @@
-const cookieValue = document.cookie
+const highScore = document.querySelector(".highest_stat span").innerHTML;
+
+const lastScoreCookie = document.cookie
   .split('; ')
   .find((row) => row.startsWith('score='))
   ?.split('=')[1];
-document.querySelector(".personal_stat span").innerHTML = `${cookieValue}`
+document.querySelector(".personal_stat span").innerHTML = `${lastScoreCookie}`;
+
+const highScoreCookie = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('highScore='))
+  ?.split('=')[1];
+document.querySelector(".highest_stat span").innerHTML = `${highScoreCookie}`;
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -53,6 +61,12 @@ function gameStart() {
     let goingRight = true;
     let aliensRemoved = [];
     let results = 0;
+
+    if (getCookie("highScore") === null || getCookie("highScore") === "") {
+        setCookie("highScore", "0", 999999999);
+    } else {
+        console.log("Cookie bestaat al.")
+    }
     
     document.querySelector(".game").style.display = "block";
     document.querySelector(".welcomescreen").style.display = "none";
@@ -137,6 +151,11 @@ function gameStart() {
                 setCookie("score", `${results}`, 2);
                 setCookie("win_status", `GAME OVER`, 2);
                 clearInterval(invadersId);
+                if (highScoreCookie < results) {
+                    setCookie("highScore", `${results}`, 99999999);
+                } else {
+                    console.log("Score was lower as the highscore");
+                }
         };
     
         for (let i = 0; i < alienInvaders.length; i++) {
@@ -145,6 +164,11 @@ function gameStart() {
                     setCookie("score", `${results}`, 2);
                     setCookie("win_status", `GAME OVER`, 2);
                     clearInterval(invadersId);
+                    if (highScoreCookie < results) {
+                        setCookie("highScore", `${results}`, 99999999);
+                    } else {
+                        console.log("Score was lower as the highscore");
+                    }
             };
         };
         if (aliensRemoved.length === alienInvaders.length) {
@@ -152,6 +176,11 @@ function gameStart() {
                 setCookie("score", `${results}`, 2);
                 setCookie("win_status", `WON`, 2);
                 clearInterval(invadersId);
+                if (highScoreCookie < results) {
+                    setCookie("highScore", `${results}`, 99999999);
+                } else {
+                    console.log("Score was lower as the highscore");
+                }
             };
         };
     
