@@ -184,7 +184,7 @@ function gameStart() {
             };
         };
     
-    invadersId = setInterval(moveInvaders, 300);
+    invadersId = setInterval(moveInvaders, 100);
     
     
     function shoot(e) {
@@ -212,7 +212,7 @@ function gameStart() {
         }
         switch(e.key) {
             case 'ArrowUp': 
-            laserID = setInterval(moveLaser, 100)
+            laserID = setInterval(moveLaser, 1)
         }
     }
     

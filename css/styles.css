@@ -31,8 +31,8 @@
 }
 
 .game .grid {
-    width: 300px;
-    height: 300px;
+    width: 600px;
+    height: 600px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
@@ -40,21 +40,31 @@
 }
 
 .game .grid div {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 .game .invader {
     background-color: purple;
-    border-radius: 10px;
+    border-radius: 20px;
+    max-width: 80px;
+    max-height: 80px;
 }
 
 .game .shooter {
     background-color: green;
+    width: 80px;
+    height: 80px;
+}
+
+.game img {
+    max-width: 80px;
+    max-height: 80px;
 }
 
 .game .laser {
     background-color: orange;
+    border-radius: 20px;
 }
 
 .game .boom {
