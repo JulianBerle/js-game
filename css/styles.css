@@ -68,15 +68,42 @@ button:hover {
 
 .game {
     display: none;
+
+    background-color: #121212;
+
+    padding-right: 50px;
+
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px black;
+    width: 30%;
+
+    margin: 25px auto;
+
+    color: #fff;
+}
+
+.game img {
+    transform: scale(4);
+    display: block;
+
+    margin: 40px auto;
+    padding-bottom: 10px;
+}
+
+.game h1 {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .game .grid {
     width: 600px;
     height: 600px;
-    border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-
+    margin-left: -15px;
 }
 
 .game .grid div {
