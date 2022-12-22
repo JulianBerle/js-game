@@ -1,16 +1,16 @@
-const highScore = document.querySelector(".highest_stat span").innerHTML;
+const highScore = document.querySelector("#personal-high span").innerHTML;
 
 const lastScoreCookie = document.cookie
   .split('; ')
   .find((row) => row.startsWith('score='))
   ?.split('=')[1];
-document.querySelector(".personal_stat span").innerHTML = `${lastScoreCookie}`;
+document.querySelector("#last-score span").innerHTML = `${lastScoreCookie}`;
 
 const highScoreCookie = document.cookie
   .split('; ')
   .find((row) => row.startsWith('highScore='))
   ?.split('=')[1];
-document.querySelector(".highest_stat span").innerHTML = `${highScoreCookie}`;
+document.querySelector("#personal-high span").innerHTML = `${highScoreCookie}`;
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -51,6 +51,14 @@ function deleteCookie(cname) {
     createCookie(cname,"",-9999999999);
 }
 
+function gameReset() {
+    setCookie("highScore", "", -1);
+    setCookie("score", "", -1);
+    setCookie("win_status", "", -1);
+
+    location.reload(); 
+}
+
 function gameStart() {
     const grid = document.querySelector('.grid');
     const resultsDisplay = document.querySelector('.results')
@@ -69,7 +77,7 @@ function gameStart() {
     }
     
     document.querySelector(".game").style.display = "block";
-    document.querySelector(".welcomescreen").style.display = "none";
+    document.querySelector(".container").style.display = "none";
     
     for (let i = 0; i < 225; i++) {
         const square = document.createElement('div');

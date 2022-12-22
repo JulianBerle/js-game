@@ -9,18 +9,20 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body> 
-    <div class="welcomescreen">
-        <div class="title">
-            <h1>Gamename</h1>
-        </div>
+    <div class="container">
 
-        <div class="buttons">
-            <a onclick="gameStart()">start</a>
+        <div class="logo">
+            <img src="./assets/space-invaders-logo.png" alt="">
         </div>
-
-        <div class="stats">
-            <h2 class="personal_stat">Last Score: <span>0</span></h2>
-            <h2 class="highest_stat">Personal High: <span>0</span></h2>
+        
+        <div class="stat">
+            <p id="personal-high">Personal Highscore: <span></span></p> <br>
+            <p id="last-score">Last Score: <span></span></p>
+        </div>
+    
+        <div class="knoppen">
+            <button onclick="gameStart()" id="start-knop">Start</button>
+            <button onclick="gameReset()" id="reset-knop">Reset</button>
         </div>
     </div>
     

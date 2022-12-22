@@ -4,26 +4,66 @@
     font-family: 'Press Start 2P', cursive;
 }
 
-.welcomescreen .title {
+.container {
+    color: #fff;
+    width: 30em;
+    padding: 50px;
+    position: absolute;
+    background: #121212;
+    border-radius: 20px;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 0px 50px black;
+}
+
+.container .logo img {
+    width: 30em;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    padding: 10px;
+    border: 2px solid #fef104;
+    border-radius: 30px;
+    transition: .3s ease-in-out;
+    color: #fff;
+}
+
+p:hover {
+    background-color: #fef104;
+    color: black;
+}
+
+.stat{
     text-align: center;
+    color: #fff;
+    font-weight: 500;
+    line-height: 25px;
+    background-color: #121212;
+
 }
 
-.welcomescreen .stats {
-    display: flex;
-    justify-content: space-around;
+.knoppen {
+    margin: 0 100px;
 }
-
-.welcomescreen .buttons {
-    text-align: center;
-}
-
-.welcomescreen .buttons a {
-    transition: .4s;
-}
-
-.welcomescreen .buttons a:hover {
-    color: green;
+button{
+    width: 120px;
+    padding: 10px 0;
+    border-radius: 20px;
     cursor: pointer;
+    transition: .2s ease-in-out;
+    align-items: center;
+    color: #fff;
+    border: 2px solid #fef104;
+    background-color: transparent;
+
+}
+
+button:hover {
+    background-color: #fef104;
+    color: black;
 }
 
 .game {
