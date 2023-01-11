@@ -138,12 +138,26 @@ button:hover {
     background-color: red;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 575px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border-radius: 0;
+        margin-left: -1px;
+    }
 
-    .welcomescreen .stats {
-        display: flex;
-        flex-direction: column;
+    .container .logo {
+        margin-top: 100px;
         text-align: center;
+    }
+
+    .container .knoppen {
+        text-align: center;
+    }
+
+    .game {
+        width: 100%;
     }
 }
 

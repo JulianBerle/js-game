@@ -1,17 +1,5 @@
 const highScore = document.querySelector("#personal-high span").innerHTML;
 
-const lastScoreCookie = document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('score='))
-  ?.split('=')[1];
-document.querySelector("#last-score span").innerHTML = `${lastScoreCookie}`;
-
-const highScoreCookie = document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('highScore='))
-  ?.split('=')[1];
-document.querySelector("#personal-high span").innerHTML = `${highScoreCookie}`;
-
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -51,10 +39,53 @@ function deleteCookie(cname) {
     createCookie(cname,"",-9999999999);
 }
 
+if (getCookie("highScore") === null || getCookie("highScore") === "") {
+    setCookie("highScore", 0, 999999999);
+    console.log("Highscore cookie aangemaakt.")
+} else {
+    console.log("highscore cookie bestaat al.")
+}
+
+if (getCookie("score") === null || getCookie("score") === "") {
+    setCookie("score", 0, 999999999);
+    console.log("Score cookie aangemaakt.")
+} else {
+    console.log("Score cookie bestaat al.")
+}
+
+if (getCookie("level") === null || getCookie("level") === "") {
+    setCookie("level", 1, 999999999);
+    console.log("Level cookie aangemaakt.")
+} else {
+    console.log("Level cookie bestaat al.")
+}
+
+if (getCookie("invaderSpeed") === null || getCookie("invaderSpeed") === "") {
+    setCookie("invaderSpeed", 500, 999999999);
+    console.log("InvaderSpeed cookie aangemaakt.")
+} else {
+    console.log("InvaderSpeed cookie bestaat al.")
+}
+
+let invaderSpeed = document.cookie.split('; ').find((row) => row.startsWith('invaderSpeed='))?.split('=')[1];
+
+let levelNumber = document.cookie.split('; ').find((row) => row.startsWith('level='))?.split('=')[1];
+
+document.querySelector("#level-score span").innerHTML = `${levelNumber}`;
+
+const lastScoreCookie = document.cookie  .split('; ')  .find((row) => row.startsWith('score='))  ?.split('=')[1];
+
+document.querySelector("#last-score span").innerHTML = `${lastScoreCookie}`;
+
+const highScoreCookie = document.cookie  .split('; ')  .find((row) => row.startsWith('highScore='))  ?.split('=')[1];
+
+document.querySelector("#personal-high span").innerHTML = `${highScoreCookie}`;
+
 function gameReset() {
     setCookie("highScore", "", -1);
     setCookie("score", "", -1);
     setCookie("win_status", "", -1);
+    setCookie("level", 1, -1)
 
     location.reload(); 
 }
@@ -69,12 +100,6 @@ function gameStart() {
     let goingRight = true;
     let aliensRemoved = [];
     let results = 0;
-
-    if (getCookie("highScore") === null || getCookie("highScore") === "") {
-        setCookie("highScore", "0", 999999999);
-    } else {
-        console.log("Cookie bestaat al.")
-    }
     
     document.querySelector(".game").style.display = "block";
     document.querySelector(".container").style.display = "none";
@@ -164,7 +189,8 @@ function gameStart() {
                 } else {
                     console.log("Score was lower as the highscore");
                 }
-        };
+                window.location.reload();
+            };
     
         for (let i = 0; i < alienInvaders.length; i++) {
             if(alienInvaders[i] > (squares.length )) {
@@ -177,22 +203,26 @@ function gameStart() {
                     } else {
                         console.log("Score was lower as the highscore");
                     }
-            };
+                    window.location.reload();
+          };
         };
         if (aliensRemoved.length === alienInvaders.length) {
             resultsDisplay.innerHTML = 'YOU WIN with score ' + results;
                 setCookie("score", `${results}`, 2);
                 setCookie("win_status", `WON`, 2);
+                setCookie("level", parseInt(levelNumber)+1, 9999)
+                setCookie("invaderSpeed", parseInt(invaderSpeed)-10, 9999)
                 clearInterval(invadersId);
                 if (highScoreCookie < results) {
                     setCookie("highScore", `${results}`, 99999999);
                 } else {
                     console.log("Score was lower as the highscore");
                 }
+                window.location.reload();
             };
         };
     
-    invadersId = setInterval(moveInvaders, 100);
+    invadersId = setInterval(moveInvaders, parseInt(invaderSpeed));
     
     
     function shoot(e) {
