@@ -84,7 +84,6 @@ document.querySelector("#personal-high span").innerHTML = `${highScoreCookie}`;
 function gameReset() {
     setCookie("highScore", "", -1);
     setCookie("score", "", -1);
-    setCookie("win_status", "", -1);
     setCookie("level", 1, -1)
 
     location.reload(); 
@@ -182,7 +181,6 @@ function gameStart() {
         if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
             resultsDisplay.innerHTML = 'GAME OVER youre score was ' + results;
                 setCookie("score", `${results}`, 2);
-                setCookie("win_status", `GAME OVER`, 2);
                 clearInterval(invadersId);
                 if (highScoreCookie < results) {
                     setCookie("highScore", `${results}`, 99999999);
@@ -196,7 +194,6 @@ function gameStart() {
             if(alienInvaders[i] > (squares.length )) {
                 resultsDisplay.innerHTML = 'GAME OVER youre score was ' + results;
                     setCookie("score", `${results}`, 2);
-                    setCookie("win_status", `GAME OVER`, 2);
                     clearInterval(invadersId);
                     if (highScoreCookie < results) {
                         setCookie("highScore", `${results}`, 99999999);
@@ -209,7 +206,6 @@ function gameStart() {
         if (aliensRemoved.length === alienInvaders.length) {
             resultsDisplay.innerHTML = 'YOU WIN with score ' + results;
                 setCookie("score", `${results}`, 2);
-                setCookie("win_status", `WON`, 2);
                 setCookie("level", parseInt(levelNumber)+1, 9999)
                 setCookie("invaderSpeed", parseInt(invaderSpeed)-10, 9999)
                 clearInterval(invadersId);
