@@ -4,7 +4,7 @@ function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
 }
 
 function getCookie(cname) {
@@ -137,10 +137,16 @@ function gameStart() {
         squares[currentShooterIndex].classList.remove('shooter');
     
         switch(e.key) {
-            case 'ArrowLeft':
+            case 'a':
                 if (currentShooterIndex % width !== 0) currentShooterIndex -=1;
                 break;
-            case 'ArrowRight':
+            case 'd':
+                if (currentShooterIndex % width < width -1) currentShooterIndex +=1;
+                break;
+            case 'A':
+                if (currentShooterIndex % width !== 0) currentShooterIndex -=1;
+                break;
+            case 'D':
                 if (currentShooterIndex % width < width -1) currentShooterIndex +=1;
                 break;
         };
@@ -245,8 +251,12 @@ function gameStart() {
             }
         }
         switch(e.key) {
-            case 'ArrowUp': 
+            case 'w': 
             laserID = setInterval(moveLaser, 1)
+            break;
+            case 'W': 
+            laserID = setInterval(moveLaser, 1)
+            break;
         }
     }
     
